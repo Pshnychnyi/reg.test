@@ -13,10 +13,10 @@
                             </ul>
                         </div>
                     </header>
-                    <sign-up
+                    <register
                         v-show="modal.signUp"
                         @close="modal.signUp=false"
-                    ></sign-up>
+                    ></register>
                 </div>
             </section>
         </div>
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import signUp from "../components/SignUp.vue";
+import register from "../components/Register.vue";
 
 export default {
     components: {
-        signUp
+        register
     },
     data() {
         return {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Services\Response\ResponseService;
 use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
@@ -39,7 +40,7 @@ class RegisterController extends Controller
         $data = $request->validated();
 
         if($this->checkUserEmail($data['email'])) {
-            return response()->json(['status' => 'error', 'message' => 'User already exist']);
+            return ResponseService::sendJsonResponse(false, 403, ['message' => 'User already exist']);
         }
 
         $data['id'] = $this->users[count($this->users) - 1]['id'] + 1;
@@ -48,7 +49,9 @@ class RegisterController extends Controller
 
         $this->users[] = $data;
 
-        return response()->json(['status' => 'success', 'message' => 'Registration success', 'users' => $data]);
+        return ResponseService::sendJsonResponse(true, 200, [], [
+            'user' => $data
+        ]);
     }
 
     public function checkUserEmail($email) {

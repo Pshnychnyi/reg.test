@@ -92,14 +92,12 @@ export default {
       axios.post('http://127.0.0.1:8000/api/register', {
           ...data
       }).then(result => {
-          M.toast({html: result.data.message})
-
-          if(result.data.status === 'success') {
+          if(result.data.status === true) {
+              M.toast({html: 'Registration success'})
               this.close()
           }
       }).catch(e => {
-
-          if(e.response) {
+          if(e.response.data.status === false) {
               Object.values(e.response.data.errors).forEach(item =>  M.toast({html: item}))
           }
       })
