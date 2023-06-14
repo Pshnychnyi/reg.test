@@ -25,9 +25,9 @@ class RegisterRequest extends ApiRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:7|max:255',
-            'surname' => 'required|string|min:7|max:255',
-            'email' => 'required|email|min:7|max:255',
+            'name' => 'required|string|min:6|max:255',
+            'surname' => 'required|string|min:6|max:255',
+            'email' => 'required|email|min:6|max:255',
             'pass' => 'required|string|min:6|max:255|confirmed'
         ];
     }
